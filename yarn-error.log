@@ -1,0 +1,36 @@
+Arguments: 
+  /home/sangeeta/.nvm/versions/node/v20.5.0/bin/node /home/sangeeta/.nvm/versions/node/v20.5.0/bin/yarn install --no-progress --frozen-lockfile
+
+PATH: 
+  /home/sangeeta/.rvm/gems/ruby-3.0.2@school_management_app/bin:/home/sangeeta/.nvm/versions/node/v20.5.0/bin:/home/sangeeta/.rvm/gems/ruby-3.0.2@global/bin:/home/sangeeta/.rvm/rubies/ruby-3.0.2/bin:/home/sangeeta/.rvm/bin:/home/sangeeta/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.Ubuntu_2204.2.33.0_x64__79rhkp1fndgsc:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Android:/mnt/c/Windows/System32:/mnt/c/Program Files/dotnet:/mnt/c/Users/Sangeeta/AppData/Local/Microsoft/WindowsApps:/snap/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  20.5.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EPERM: operation not permitted, copyfile '/home/sangeeta/.cache/yarn/v6/npm-@rails-actioncable-6.1.7-8b4506925d3f7146a70941e4db7ce9dda99f99ae-integrity/node_modules/@rails/actioncable/package.json' -> '/mnt/c/Users/Sangeeta/Desktop/SchoolManagementApp/node_modules/@rails/actioncable/package.json'
+
+npm manifest: 
+  {
+    "name": "school-management-app",
+    "private": true,
+    "dependencies": {
+      "@rails/ujs": "^6.0.0",
+      "turbolinks": "^5.2.0",
+      "@rails/activestorage": "^6.0.0",
+      "@rails/actioncable": "^6.0.0"
+    },
+    "version": "0.1.0"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
