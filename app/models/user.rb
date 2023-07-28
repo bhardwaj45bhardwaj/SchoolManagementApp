@@ -9,6 +9,9 @@ class User < ApplicationRecord
 
   has_many :enrollments, foreign_key: :student_id, inverse_of: :student
   belongs_to :role
+  belongs_to :school, optional: true
+  
+  validate :is_school_available
 
   def admin?
     role.name == "Admin"
@@ -23,8 +26,17 @@ class User < ApplicationRecord
   end
 
   def get_students_by_batch(batch_id)
-    enrollment = self.enrollments.where("batch_id = ?", batch_id).first # to secure that this enrollment and batch belongs to current user
-    User.enrollments.where("batch_id = ?", enrollment.batch_id)
+    User.joins(:enrollments).where("batch_id = ?", batch_id)
+  end
+
+  private
+
+  def is_school_available
+    if school && self.admin?
+      errors.add(:school, "please remove school for admin")
+    elsif school.nil? && (self.school_admin? || self.student?)
+      errors.add(:school, "please add school for school admin and student")
+    end
   end
  
 end

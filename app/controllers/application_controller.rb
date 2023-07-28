@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
-      format.json { head :forbidden }
+      format.json { head :unauthorized }
       # format.html { redirect_to root_path, alert: exception.message }
     end
   end
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     # On view we can only pass two roles admin and student for signup process
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:role_id])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:role_id])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:role_id, :school_id])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:role_id, :school_id])
   end
 end

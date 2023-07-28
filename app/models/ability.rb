@@ -33,17 +33,15 @@ class Ability
     if user.admin?
       can :manage, :all
     elsif user.school_admin?
-      can [:create, :update], User
-      can :update, School
-      can [:create, :update] Batch # school_admin can create batch
-      can [:create, :update] Course # school_admin can update course
-      can [:create, :update], Enrollment
-      can :read, :all
+      can [:update, :read], User, id: user.id 
+      can [:update, :read], School, id: user.school_id 
+      can [:create, :update, :read], Course, school_id: user.school_id  # school_admin can update course
+      can [:create, :update, :read], Batch, course: {school_id: user.school_id} 
+      can [:create, :update, :destroy, :read], Enrollment, batch: {course: {school_id: user.school_id}}
     elsif user.student?
-      can :create, Enrollment
-      can :batch_users, User
-    else
-      can :read, :all
+      can [:create, :read], Enrollment, student_id: user.id, batch: {course: {school_id: user.school_id}}
+      @batch_ids = user.enrollments.pluck(:batch_id)
+      can :batch_students, Batch, id: @batch_ids
     end
   end
 end

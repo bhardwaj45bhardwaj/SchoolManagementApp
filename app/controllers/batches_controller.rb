@@ -4,6 +4,11 @@ class BatchesController < ApplicationController
 
 	#listing the all batches
 	def index
+		if current_user.admin?
+			@batches = Batch.all
+		elsif current_user.school_admin?
+			@batches = Batch.where(school_id: current_user.school_id)
+		end
 		@batches = Batch.all
 		render json: @batches, status: :ok
 	end
@@ -18,6 +23,16 @@ class BatchesController < ApplicationController
 			render json: { errors: @batch.errors.full_messages }, status: :unprocessable_entity
 		end
 	end
+
+	# show school
+	def show
+		@batch = Batch.find_by(id: params[:id])
+		if @batch.present?
+			render json: @batch, status: :ok
+		else
+			render json: { errors: "Batch not found" }, status: :unprocessable_entity
+		end
+	end
    
     # update by school admin
 	def update
@@ -26,6 +41,16 @@ class BatchesController < ApplicationController
 			render json: @batch, status: :ok
 		else
 			render json: { errors: @batch.errors.full_messages }, status: :unprocessable_entity
+		end
+	end
+
+	#get request for student can see students from batch wise
+	def batch_students
+		@studenst = current_user.get_students_by_batch(params[:id])
+		if @studenst.present?
+			render json: @studenst, status: :ok
+		else
+			render json: { errors: "Students not found" }, status: :unprocessable_entity
 		end
 	end
 

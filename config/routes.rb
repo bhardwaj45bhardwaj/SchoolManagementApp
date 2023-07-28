@@ -7,15 +7,15 @@ Rails.application.routes.draw do
   #devise_for :users
 
   scope '/admin' do
-    resources :users, only: [:index, :create, :update] do 
-      get :batch_students, on: :member
-    end
+    resources :users, only: [:index, :create, :update]
   end
 
-  resources :schools, only: [:index, :create, :update]
-  resources :courses, only: [:index, :create, :update]
-  resources :batches, only: [:index, :create, :update]
-  resources :enrollments, only: [:index, :create, :update, :destroy]
+  resources :schools, only: [:index, :create, :update, :show]
+  resources :courses, only: [:index, :create, :update, :show]
+  resources :batches, only: [:index, :create, :update, :show] do
+    get :batch_students, on: :member
+  end
+  resources :enrollments, only: [:index, :create, :update, :show, :destroy]
 
 
 

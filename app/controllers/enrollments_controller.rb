@@ -7,6 +7,8 @@ class EnrollmentsController < ApplicationController
 	  if current_user.student?
         @enrollments = current_user.enrollments
 	  elsif current_user.school_admin?
+	  	@enrollments = Enrollment.get_school_enrollments(current_user.school_id)
+	  else
 	  	@enrollments = Enrollment.all
 	  end
 	  render json: @enrollments, status: :ok
@@ -56,7 +58,7 @@ class EnrollmentsController < ApplicationController
 	end
 
 	def update_params
-		params.require(:enrollment).permit(:status, :batch_id, :student_id)
+		params.require(:enrollment).permit(:status)
 	end
 
 	def enrollment_by_shcool_admin_params

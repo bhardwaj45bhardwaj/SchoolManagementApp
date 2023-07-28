@@ -28,18 +28,11 @@ class UsersController < ApplicationController
 			render json: { errors: "User not found" }, status: :unprocessable_entity
 		end
 	end
-    
-    #get request for student can see students from batch wise
-	def batch_students
-		@users = current_user.get_students_by_batch(params[:batch_id])
-		render json: @users, status: :ok
-	end
-
 
 	private
 
 	def user_params
-		params.require(:user).permit(:email, :password, :password_confirmation, :role_id)
+		params.require(:user).permit(:email, :password, :password_confirmation, :role_id, :school_id)
 	end
 
 	

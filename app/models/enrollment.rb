@@ -7,11 +7,16 @@ class Enrollment < ApplicationRecord
 
   validates :student, uniqueness: { scope: :batch } 
 
+  before_validation :set_status, on: :create
+
   validates :status, presence: true
 
-  before_create :set_status
-
   def set_status
-    status = :pending
+    self.status = 0
+  end
+  
+  #Display school wise enrollments for school admin
+  def self.get_school_enrollments(school_id)
+    Enrollment.joins(batch: :course).where("courses.school_id = ?", school_id)
   end
 end

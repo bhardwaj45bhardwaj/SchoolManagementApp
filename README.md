@@ -5,20 +5,24 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Installed wsl over windows
+
+* Ruby version 3.0.1
+
+* Rails version Rails 6.1.7.4
+
+* Setup rvm gemset "school_management_app"
 
 * System dependencies
 
-* Configuration
+* bundle install
 
-* Database creation
+* Database creation (rails db:create, db:migrate)
 
-* Database initialization
+* role seed data (rails db:seed)
 
-* How to run the test suite
+* Run application with rails s
 
-* Services (job queues, cache servers, search engines, etc.)
+* Added project on git repository
 
-* Deployment instructions
-
-* ...
+* 
