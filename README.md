@@ -16,7 +16,7 @@ Things you may want to cover:
 * System dependencies
 
 * bundle install
-  - Used devise_token_auth for user signup and sign
+  - Used devise_token_auth for user signup and sign and user authorization
   - Used CanCanCan gem for role management
   - Used Rspec and shoulda-matchers for unit test cases
 
