@@ -16,6 +16,11 @@ Things you may want to cover:
 * System dependencies
 
 * bundle install
+  - Used devise_token_auth for user signup and sign
+  - Used CanCanCan gem for role management
+  - Used Rspec and shoulda-matchers for unit test cases
+
+* install sqlite3 for db setup
 
 * Database creation (rails db:create, db:migrate)
 
