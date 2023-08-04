@@ -13,6 +13,9 @@ class User < ApplicationRecord
   
   validate :is_school_available
 
+  # scope :student, -> { where("role_id = ?", 3) }
+
+
   def admin?
     role.name == "Admin"
   end
